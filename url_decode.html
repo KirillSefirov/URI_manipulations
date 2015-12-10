@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="bootstrap.css">
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<br>
+<!------------------------------------------------------------------------>
+<form>
+    Insert URI for decode:<br>
+    <input type="text" id="URI_string" size="80">
+</form>
+
+<button onclick="myURIDecode()" >Decode it</button><br><br>
+
+<script>
+    function myURIDecode() {
+        var uri = document.getElementById("URI_string").value;
+        var uri_dec = decodeURIComponent(uri)
+        var res = "Decoded URI:<br>" + uri_dec
+        res = res.replace(/,/g, ",<br>")
+        res = res.replace(/&q=/g, "&q=<br><br>")
+        document.getElementById("demo").innerHTML = res;
+    }
+</script>
+<!------------------------------------------------------------------------>
+<form>
+    Insert URI for decode:<br>
+    <input type="text" id="URI_string_1" size="80">
+</form>
+
+<button onclick="myURIDecode_1()" >Decode it</button><br><br>
+
+<script>
+    function myURIDecode_1() {
+        var uri = document.getElementById("URI_string_1").value;
+        var uri_dec = decodeURIComponent(uri)
+        var res = "Decoded URI:<br>" + uri_dec
+        document.getElementById("demo").innerHTML = res;
+    }
+</script>
+<!------------------------------------------------------------------------>
+<form>
+    Insert URI for Encode:<br>
+    <input type="text" id="URI_string_encode" size="80">
+</form>
+<button onclick="myURIEncode()" >Encode it</button><br>
+</br></br></br>
+<script>
+    function myURIEncode() {
+        var uri = document.getElementById("URI_string_encode").value;
+        var uri_dec = encodeURIComponent(uri) //too much
+        //var uri_dec = encodeURI(uri)
+        var res = "Encoded URI:<br>" + uri_dec
+        document.getElementById("demo").innerHTML = res;
+    }
+</script>
+<!------------------------------------------------------------------------>
+<form>
+    ChangeURL in sdk READ string:<br>
+    <input type="text" id="sdk_string" size="80" placeholder="input sdk string">
+    <input type="text" id="new_url" size="80" placeholder='new url with "http://"'>
+</form>
+<button onclick="update_sdk_string()" >Update sdk string</button><br>
+<br><br><br>
+<script>
+    function update_sdk_string()
+    {
+        var sdk_str = document.getElementById("sdk_string").value;
+        var sdk_url = sdk_str.substring(sdk_str.indexOf("%22url%22") + 15,sdk_str.indexOf("%22%7D%5D%2C%22impressions%22"));
+        var new_url = document.getElementById("new_url").value;
+        var encoded_new_url = encodeURIComponent(new_url);
+        var new_sdk_string = sdk_str.replace(sdk_url, encoded_new_url);
+
+        var result =
+                "Current sdk string:<br>" + sdk_url + "<br><br>" +
+                "Endcoded new url:<br>" + encoded_new_url + "<br><br>" +
+                "New SDK string:<br>" + new_sdk_string
+        document.getElementById("demo").innerHTML = result;
+    }
+</script>
+<!------------------------------------------------------------------------>
+
+<p id="demo"></p>
+
+
+</body>
+</html>
