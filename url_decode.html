@@ -18,10 +18,10 @@
 <script>
     function myURIDecode() {
         var uri = document.getElementById("URI_string").value;
-        var uri_dec = decodeURIComponent(uri)
-        var res = "Decoded URI:<br>" + uri_dec
-        res = res.replace(/,/g, ",<br>")
-        res = res.replace(/&q=/g, "&q=<br><br>")
+        var uri_dec = decodeURIComponent(uri);
+        var res = "Decoded URI:<br>" + uri_dec;
+        res = res.replace(/,/g, ",<br>");
+        res = res.replace(/&q=/g, "&q=<br><br>");
         document.getElementById("demo").innerHTML = res;
     }
 </script>
@@ -36,9 +36,9 @@
 <script>
     function myURIDecode_1() {
         var uri = document.getElementById("URI_string_1").value;
-        var uri_dec = decodeURIComponent(uri)
-        var res = "Decoded URI:<br>" + uri_dec
-        document.getElementById("demo").innerHTML = res;
+        var uri_dec = decodeURIComponent(uri);
+        document.getElementById("demo").innerHTML =
+                "Decoded URI:<br>" + uri_dec;
     }
 </script>
 <!------------------------------------------------------------------------>
@@ -47,14 +47,13 @@
     <input type="text" id="URI_string_encode" size="80">
 </form>
 <button onclick="myURIEncode()" >Encode it</button><br>
-</br></br></br>
+<br><br><br>
 <script>
     function myURIEncode() {
         var uri = document.getElementById("URI_string_encode").value;
-        var uri_dec = encodeURIComponent(uri) //too much
-        //var uri_dec = encodeURI(uri)
-        var res = "Encoded URI:<br>" + uri_dec
-        document.getElementById("demo").innerHTML = res;
+        var uri_dec = encodeURIComponent(uri);
+        document.getElementById("demo").innerHTML =
+                "Encoded URI:<br>" + uri_dec;
     }
 </script>
 <!------------------------------------------------------------------------>
@@ -74,17 +73,15 @@
         var encoded_new_url = encodeURIComponent(new_url);
         var new_sdk_string = sdk_str.replace(sdk_url, encoded_new_url);
 
-        var result =
+        document.getElementById("demo").innerHTML =
                 "Current sdk string:<br>" + sdk_url + "<br><br>" +
                 "Endcoded new url:<br>" + encoded_new_url + "<br><br>" +
-                "New SDK string:<br>" + new_sdk_string
-        document.getElementById("demo").innerHTML = result;
+                "New SDK string:<br>" + new_sdk_string;
     }
 </script>
 <!------------------------------------------------------------------------>
 
 <p id="demo"></p>
-
 
 </body>
 </html>
