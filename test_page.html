@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="bootstrap.css">
+    <title></title>
+</head>
+<body>
+
+<style>
+
+    #nav {
+        width:40%;
+        float:left;
+        padding:5px;
+    }
+    #display {
+        width:60%;
+        float:left;
+        padding:10px;
+    }
+
+</style>
+
+
+<div id="nav">
+    <form>
+        Insert URI for decode:<br>
+        <input type="text" id="URI_string" size="80">
+    </form>
+
+    <button onclick="myURIDecode()" >Decode it</button><br><br>
+
+</div>
+
+
+
+<div id="display">
+    <p id="demo"></p>
+</div>
+
+
+
+
+
+
+
+<script>
+    function myURIDecode() {
+        var uri = document.getElementById("URI_string").value;
+        var uri_dec = decodeURIComponent(uri);
+        var res = "Decoded URI:<br>" + uri_dec;
+        res = res.replace(/,/g, ",<br>");
+        res = res.replace(/&q=/g, "&q=<br><br>");
+        document.getElementById("demo").innerHTML = res;
+    }
+</script>
+
+
+</body>
+</html>
