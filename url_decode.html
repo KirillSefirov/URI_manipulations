@@ -75,24 +75,54 @@
     </script>
     <!------------------------------------------------------------------------>
     <form>
-        ChangeURL in sdk READ string:<br>
-        <input type="text" id="sdk_string" size="80" placeholder="input sdk string"><br><br>
-        <input type="text" id="new_url" size="80" placeholder='new url with "http://"'><br><br>
+        Change URL in READ event SDK string:<br>
+        <input type="text" id="sdk_read_string" size="80" placeholder="input sdk read string"><br><br>
+        <input type="text" id="new_url_for_read" size="80" placeholder='new url with "http://"'><br><br>
     </form>
-    <button onclick="update_sdk_string()" >Update sdk string</button><br>
+    <button onclick="update_sdk_read_string()" >Update sdk string</button><br>
     <br><br><br>
     <script>
-        function update_sdk_string()
+        function update_sdk_read_string()
         {
-            var sdk_str = document.getElementById("sdk_string").value;
-            var sdk_url = sdk_str.substring(sdk_str.indexOf("%22url%22") + 15,sdk_str.indexOf("%22%7D%5D%2C%22impressions%22"));
-            var new_url = document.getElementById("new_url").value;
+            var sdk_str = document.getElementById("sdk_read_string").value;
+            var sdk_url = sdk_str.substring(sdk_str.indexOf("%22url%22%3A%22http") + 15,sdk_str.indexOf("%22%7D%5D%2C%22impressions%22"));
+            var new_url = document.getElementById("new_url_for_read").value;
             var encoded_new_url = encodeURIComponent(new_url);
             var new_sdk_string = sdk_str.replace(sdk_url, encoded_new_url);
 
             document.getElementById("Text1").value =
-                    "Current sdk string:\r\n" + sdk_url + "\r\n\r\n" +
+                    "Current sdk url:\r\n" + sdk_url + "\r\n\r\n" +
                     "Endcoded new url:\r\n" + encoded_new_url + "\r\n\r\n" +
+                    "New SDK string:\r\n" + new_sdk_string;
+        }
+    </script>
+    <!------------------------------------------------------------------------>
+    <form>
+        Change URL in IMPRESSION event SDK string:<br>
+        <input type="text" id="sdk_imp_string" size="80" placeholder="input sdk impression string"><br><br>
+        <input type="text" id="new_url_for_impression" size="80" placeholder='new url with "http://"'><br><br>
+    </form>
+    <button onclick="update_sdk_imp_string()" >Update sdk string</button><br>
+    <br><br><br>
+    <script>
+        function update_sdk_imp_string()
+        {
+            var sdk_str = document.getElementById("sdk_imp_string").value;
+            var sdk_url = sdk_str.substring(sdk_str.indexOf("%22url%22%3A%22http") + 15,sdk_str.indexOf("%7D%5D%7D&c=News360"));
+            var sdk_referer = sdk_str.substring(sdk_str.indexOf("%22referer%22%3A%22") + 19,sdk_str.indexOf("%22%2C%22url%22%3A%22http"));
+            var new_url = document.getElementById("new_url_for_impression").value;
+            //var new_referer = new_url.substring(new_url.indexOf()); //TODO: Have no idea how to get hostname
+            var new_referer = "www.testreferer.com"; //TODO: Need to be removed
+            var encoded_new_referer = encodeURIComponent(new_referer);
+            var encoded_new_url = encodeURIComponent(new_url);
+            var new_sdk_string = sdk_str.replace(sdk_url, encoded_new_url);
+            new_sdk_string = new_sdk_string.replace(sdk_referer, encoded_new_referer);
+
+            document.getElementById("Text1").value =
+                    "Current sdk url:\r\n" + sdk_url + "\r\n\r\n" +
+                    "Current sdk referer:\r\n" + sdk_referer + "\r\n\r\n" +
+                    "Endcoded new url:\r\n" + encoded_new_url + "\r\n\r\n" +
+                    "Endcoded new referer:\r\n" + encoded_new_referer + "\r\n\r\n" +
                     "New SDK string:\r\n" + new_sdk_string;
         }
     </script>
