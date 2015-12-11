@@ -108,7 +108,7 @@
         function update_sdk_imp_string()
         {
             var sdk_str = document.getElementById("sdk_imp_string").value;
-            var sdk_url = sdk_str.substring(sdk_str.indexOf("%22url%22%3A%22http") + 15,sdk_str.indexOf("%7D%5D%7D&c=News360"));
+            var sdk_url = sdk_str.substring(sdk_str.indexOf("%22url%22%3A%22http") + 15,sdk_str.indexOf("%22%2C%22area%22%3A"));
             var sdk_referer = sdk_str.substring(sdk_str.indexOf("%22referer%22%3A%22") + 19,sdk_str.indexOf("%22%2C%22url%22%3A%22http"));
             var new_url = document.getElementById("new_url_for_impression").value;
             //var new_referer = new_url.substring(new_url.indexOf()); //TODO: Have no idea how to get hostname
